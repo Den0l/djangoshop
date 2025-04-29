@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1>Лучшие товары для вашего дома</h1>
+        <p>Скидки до 50% на новую коллекцию</p>
+        <a href="{% url 'all_products' %}" class="btn">Перейти в каталог</a>
+    </div>
+</section>
+
+<section class="featured-products">
+    <h2>Популярные товары</h2>
+    <div class="products-grid">
+        <div class="product-card">
+            <img src="{% static 'mainapp/images/product1.jpg' %}" alt="Товар 1">
+            <h3>Смартфон X</h3>
+            <p class="price">29 990 ₽</p>
+            <button class="add-to-cart">В корзину</button>
+        </div>
+        <div class="product-card">
+            <img src="{% static 'mainapp/images/product2.jpg' %}" alt="Товар 2">
+            <h3>Ноутбук Pro</h3>
+            <p class="price">89 990 ₽</p>
+            <button class="add-to-cart">В корзину</button>
+        </div>
+    </div>
+</section>
+{% endblock %}

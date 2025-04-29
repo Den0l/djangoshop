@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<style>
+    /* Переменные темы */
+:root {
+    --primary: #2c3e50;
+    --secondary: #e74c3c;
+    --accent: #3498db;
+    --light: #f8f9fa;
+    --dark: #333;
+}
+
+/* Улучшенная типографика */
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.75;
+    color: var(--dark);
+}
+
+h1, h2, h3 {
+    color: var(--primary);
+    margin: 1.5rem 0;
+}
+
+a {
+    color: var(--secondary);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent);
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Улучшенные карточки товаров */
+.product-card {
+    background: var(--light);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.product-card__content {
+    padding: 1.5rem;
+}
+
+.product-card__title {
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+}
+
+.product-card__price {
+    color: var(--secondary);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* Анимированные кнопки */
+.btn {
+    background: var(--secondary);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Таблица корзины */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.cart-table th {
+    background: var(--primary);
+    color: white;
+    padding: 1.2rem;
+    text-align: left;
+}
+
+.cart-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-total {
+    text-align: right;
+    margin-top: 2rem;
+}
+
+/* Анимация появления */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Стили для хедера */
+.site-header {
+    position: sticky;
+    top: 0;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    font-size: 1.75rem;
+    color: var(--primary);
+}
+
+.nav__list {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.dropdown__menu {
+    display: none;
+    position: absolute;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    min-width: 160px;
+    margin-top: 0.5rem;
+}
+
+.dropdown:hover .dropdown__menu {
+    display: block;
+}
+
+.dropdown__menu li a {
+    padding: 0.75rem 1.5rem;
+    display: block;
+    white-space: nowrap;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+<head>
+    <title>{% block title %}LoLstore{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- В base.html -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-inner">
+            <a href="/base" class="logo">LoL магазин</a>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="{% url 'base' %}">Главная</a></li>
+                    <li class="nav__item"><a href="{% url 'categories' %}">Категории</a></li>
+                    <li class="nav__item dropdown" se>
+                        <a href="#">О компании</a>
+                        <ul class="dropdown__menu">
+                            <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                            <li><a href="{% url 'how_to_find' %}">Как нас найти</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav__item dropdown">
+                        <a href="{% url 'all_products' %}">Товары</a>
+                    </li>
+                    <li class="nav__item"><a href="{% url 'cart' %}">Корзина</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 LoLstore</p>
+        </div>
+    </footer>
+</body>
+</html>

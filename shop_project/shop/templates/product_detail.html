@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="product-detail">
+    <div class="product-images">
+        <img src="{% static 'products/images/'|add:product.image %}" alt="{{ product.name }}">
+    </div>
+    <div class="product-info">
+        <h1>{{ product.name }}</h1>
+        <p class="price">{{ product.price }} ₽</p>
+        <p>{{ product.description }}</p>
+        <div class="quantity-selector">
+            <button class="qty-btn" onclick="adjustQty(-1)">-</button>
+            <input type="number" value="1" min="1" class="qty-input">
+            <button class="qty-btn" onclick="adjustQty(1)">+</button>
+        </div>
+        <button class="add-to-cart">Добавить в корзину</button>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+<h1>Ваша корзина</h1>
+
+<table class="cart-table">
+    <tr>
+        <th>Товар</th>
+        <th>Количество</th>
+        <th>Цена</th>
+        <th>Итого</th>
+    </tr>
+    <tr>
+        <td>Смартфон X</td>
+        <td>
+            <div class="quantity-selector">
+                <button class="qty-btn">-</button>
+                <input type="number" value="2" min="1">
+                <button class="qty-btn">+</button>
+            </div>
+        </td>
+        <td>29 990 ₽</td>
+        <td>59 980 ₽</td>
+    </tr>
+</table>
+
+<div class="cart-total">
+    <h3>Итого: 59 980 ₽</h3>
+    <a href="#" class="btn">Оформить заказ</a>
+</div>
+{% endblock %}
