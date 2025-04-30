@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Заявки на кредит</h2>
+<a href="{% url 'loan-application-create' %}">Добавить новую заявку</a>
+<ul>
+  {% for application in loan_applications %}
+    <li>
+      <a href="{% url 'loan-application-detail' application.pk %}">
+        Заявка №{{ application.id }} ({{ application.status }})
+      </a>
+      <a href="{% url 'loan-application-update' application.pk %}">Редактировать</a>
+      <a href="{% url 'loan-application-delete' application.pk %}">Удалить</a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

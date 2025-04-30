@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{% if form.instance.pk %}Редактировать заявку{% else %}Создать новую заявку{% endif %}</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Сохранить</button>
+</form>
+<a href="{% url 'loan-application-list' %}">Отмена</a>
+{% endblock %}

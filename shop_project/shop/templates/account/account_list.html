@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Счета</h2>
+<a href="{% url 'account-create' %}">Добавить новый счет</a>
+<ul>
+  {% for account in accounts %}
+    <li>
+      <a href="{% url 'account-detail' account.pk %}">
+        Счет №{{ account.account_number }} ({{ account.balance }} ₽)
+      </a>
+      <a href="{% url 'account-update' account.pk %}">Редактировать</a>
+      <a href="{% url 'account-delete' account.pk %}">Удалить</a>
+    </li>
+  {% endfor %}
+</ul>
+{% endblock %}

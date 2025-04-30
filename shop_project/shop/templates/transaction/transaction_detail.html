@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Транзакция №{{ transaction.id }}</h1>
+<p><strong>Счет:</strong> {{ transaction.account.account_number }}</p>
+<p><strong>Клиент:</strong> {{ transaction.account.client.name }} {{ transaction.account.client.surname }}</p>
+<p><strong>Сумма:</strong> {{ transaction.amount }} ₽</p>
+<p><strong>Дата:</strong> {{ transaction.date }}</p>
+
+<a href="{% url 'transaction-list' %}">Назад к списку</a>
+<a href="{% url 'transaction-update' transaction.pk %}">Редактировать</a>
+<a href="{% url 'transaction-delete' transaction.pk %}">Удалить</a>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Заявка №{{ loan_application.id }}</h1>
+<p>Клиент: {{ loan_application.client.name }} {{ loan_application.client.surname }}</p>
+<p>Статус: {{ loan_application.get_status_display }}</p>
+<p>Дата заявки: {{ loan_application.applied_at }}</p>
+<a href="{% url 'loan-application-list' %}">Назад к списку</a>
+<a href="{% url 'loan-application-update' loan_application.pk %}">Редактировать</a>
+<a href="{% url 'loan-application-delete' loan_application.pk %}">Удалить</a>
+{% endblock %}

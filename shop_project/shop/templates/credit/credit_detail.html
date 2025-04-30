@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Кредит №{{ credit.id }}</h1>
+<p>Клиент: {{ credit.client.name }} {{ credit.client.surname }}</p>
+<p>Сумма кредита: {{ credit.amount }} ₽</p>
+<p>Процентная ставка: {{ credit.interest_rate }}%</p>
+<a href="{% url 'credit-list' %}">Назад к списку</a>
+<a href="{% url 'credit-update' credit.pk %}">Редактировать</a>
+<a href="{% url 'credit-delete' credit.pk %}">Удалить</a>
+{% endblock %}
