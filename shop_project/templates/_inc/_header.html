@@ -1,3 +1,5 @@
+{% load static %}
+
 <header class="site-header">
     <div class="container">
         <div class="header-inner">
@@ -17,6 +19,15 @@
                         <a href="{% url 'all_products' %}">Товары</a>
                     </li>
                     <li class="nav__item"><a href="{% url 'cart' %}">Корзина</a></li>
+                    <li class="nav__item dropdown" se>
+                        <a href="#">CRUD</a>
+                        <ul class="dropdown__menu">
+                            <li><a href="{% url 'client-list' %}">Клиенты</a></li>
+                            <li><a href="{% url 'credit-list' %}">Кредиты</a></li>
+                            <li><a href="{% url 'loan-application-list' %}">Заявки</a></li>
+                            <li><a href="{% url 'transaction-list' %}">Транзакции</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </div>
