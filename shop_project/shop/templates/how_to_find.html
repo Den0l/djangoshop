@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Как нас найти{% endblock %}
 
 {% block content %}
+<div class="container">
 <h1>Как до нас добраться</h1>
 <iframe 
   src="https://www.google.com/maps/embed?..."
@@ -12,4 +13,5 @@
   allowfullscreen=""
   loading="lazy">
 </iframe>
+</div>
 {% endblock %}

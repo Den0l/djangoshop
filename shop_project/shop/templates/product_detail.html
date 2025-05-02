@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}{{ product.name }}{% endblock %}
 
 {% block content %}
+<div class="container">
 <div class="product-detail">
     <div class="product-images">
         <img src="{% static 'products/images/'|add:product.image %}" alt="{{ product.name }}">
@@ -18,5 +19,6 @@
         </div>
         <button class="add-to-cart">Добавить в корзину</button>
     </div>
+</div>
 </div>
 {% endblock %}

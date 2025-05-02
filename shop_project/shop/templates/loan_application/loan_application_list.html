@@ -1,5 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title_name %}
+  Заявки
+{% endblock %}
 {% block content %}
+<div class="container">
 <h2>Заявки на кредит</h2>
 <a href="{% url 'loan-application-create' %}">Добавить новую заявку</a>
 <ul>
@@ -13,4 +19,5 @@
     </li>
   {% endfor %}
 </ul>
+</div>
 {% endblock %}

@@ -38,10 +38,12 @@ def product_detail_view(request):
 class ClientListView(ListView):
     model = Client
     template_name = 'client/client_list.html'
+    context_object_name = 'clients'
 
 class ClientDetailView(DetailView):
     model = Client
     template_name = 'client/client_detail.html'
+    context_object_name = 'clients'
 
 class ClientCreateView(CreateView):
     model = Client

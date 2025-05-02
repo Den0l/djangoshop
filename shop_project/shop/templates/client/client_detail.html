@@ -1,8 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title_name %}
+  Информация о клиенте
+{% endblock %}
 {% block content %}
+<div class="container">
 <h1>{{ object.name }} {{ object.surname }}</h1>
 <img src="{{ object.photo.url }}" alt="Фото клиента">
 <p>Email: {{ object.email }}</p>
 <p>Телефон: {{ object.phone }}</p>
 <a href="{% url 'client-list' %}">Назад</a>
+</div>
 {% endblock %}

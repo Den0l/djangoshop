@@ -1,5 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title_name %}
+  Транзакции
+{% endblock %}
 {% block content %}
+<div class="container">
 <h2>Транзакции</h2>
 <a href="{% url 'transaction-create' %}">Добавить новую транзакцию</a>
 <ul>
@@ -13,4 +19,5 @@
     </li>
   {% endfor %}
 </ul>
+</div>
 {% endblock %}

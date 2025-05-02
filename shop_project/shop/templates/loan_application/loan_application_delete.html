@@ -1,9 +1,16 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title_name %}
+  Удаление заявки
+{% endblock %}
 {% block content %}
+<div class="container">
 <h1>Удалить заявку "{{ object.get_status_display }}" клиента {{ object.client.name }}?</h1>
 <form method="post">
   {% csrf_token %}
   <button type="submit">Подтвердить удаление</button>
 </form>
 <a href="{% url 'loan-application-list' %}">Отмена</a>
+</div>
 {% endblock %}

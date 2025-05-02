@@ -1,5 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title_name %}
+  Кредиты
+{% endblock %}
 {% block content %}
+<div class="container">
 <h2>Кредиты</h2>
 <a href="{% url 'credit-create' %}">Добавить кредит</a>
 <ul>
@@ -13,4 +19,5 @@
     </li>
   {% endfor %}
 </ul>
+</div>
 {% endblock %}

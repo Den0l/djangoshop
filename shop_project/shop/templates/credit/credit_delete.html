@@ -1,9 +1,16 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title_name %}
+  Создание кредита
+{% endblock %}
 {% block content %}
+<div class="container">
 <h1>Удалить кредит "{{ object.amount }} ₽" клиента {{ object.client.name }}?</h1>
 <form method="post">
   {% csrf_token %}
   <button type="submit">Подтвердить удаление</button>
 </form>
 <a href="{% url 'credit-list' %}">Отмена</a>
+</div>
 {% endblock %}

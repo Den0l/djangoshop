@@ -1,5 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title_name %}
+  Список счетов
+{% endblock %}
 {% block content %}
+<div class="container">
 <h2>Счета</h2>
 <a href="{% url 'account-create' %}">Добавить новый счет</a>
 <ul>
@@ -13,4 +19,5 @@
     </li>
   {% endfor %}
 </ul>
+</div>
 {% endblock %}

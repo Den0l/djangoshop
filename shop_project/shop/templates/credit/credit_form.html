@@ -1,5 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title_name %}
+  Создание кредита
+{% endblock %}
 {% block content %}
+<div class="container">
 <h1>{% if form.instance.pk %}Редактировать кредит{% else %}Создать новый кредит{% endif %}</h1>
 <form method="post">
   {% csrf_token %}
@@ -7,4 +13,5 @@
   <button type="submit">Сохранить</button>
 </form>
 <a href="{% url 'credit-list' %}">Отмена</a>
+</div>
 {% endblock %}

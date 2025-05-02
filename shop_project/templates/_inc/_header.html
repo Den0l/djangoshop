@@ -1,0 +1,24 @@
+<header class="site-header">
+    <div class="container">
+        <div class="header-inner">
+            <a href="/base" class="logo">LoL магазин</a>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="{% url 'base' %}">Главная</a></li>
+                    <li class="nav__item"><a href="{% url 'categories' %}">Категории</a></li>
+                    <li class="nav__item dropdown" se>
+                        <a href="#">О компании</a>
+                        <ul class="dropdown__menu">
+                            <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                            <li><a href="{% url 'how_to_find' %}">Как нас найти</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav__item dropdown">
+                        <a href="{% url 'all_products' %}">Товары</a>
+                    </li>
+                    <li class="nav__item"><a href="{% url 'cart' %}">Корзина</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>

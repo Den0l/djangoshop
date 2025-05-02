@@ -1,5 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title_name %}
+  Список клиентов
+{% endblock %}
+
 {% block content %}
+<div class="container">
 <h2>Клиенты</h2>
 <a href="{% url 'client-create' %}">Добавить клиента</a>
 <ul>
@@ -13,4 +20,5 @@
     </li>
   {% endfor %}
 </ul>
+</div>
 {% endblock %}

@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Корзина{% endblock %}
 
 {% block content %}
+<div class="container">
 <h1>Ваша корзина</h1>
 
 <table class="cart-table">
@@ -29,5 +30,6 @@
 <div class="cart-total">
     <h3>Итого: 59 980 ₽</h3>
     <a href="#" class="btn">Оформить заказ</a>
+</div>
 </div>
 {% endblock %}
