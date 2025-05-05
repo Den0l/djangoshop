@@ -7,15 +7,23 @@
 {% block content %}
 <div class="container">
 <h2>Счета</h2>
-<a href="{% url 'account-create' %}">Добавить новый счет</a>
+{% if user.is_authenticated %}
+  {% if user.is_staff %}
+    <a href="{% url 'account-create' %}">Добавить новый счет</a>
+  {% endif %}
+{% endif %}
 <ul>
   {% for account in accounts %}
     <li>
       <a href="{% url 'account-detail' account.pk %}">
         Счет №{{ account.account_number }} ({{ account.balance }} ₽)
       </a>
-      <a href="{% url 'account-update' account.pk %}">Редактировать</a>
-      <a href="{% url 'account-delete' account.pk %}">Удалить</a>
+      {% if user.is_authenticated %}
+        {% if user.is_staff %}
+          <a href="{% url 'account-update' account.pk %}">Редактировать</a>
+          <a href="{% url 'account-delete' account.pk %}">Удалить</a>
+        {% endif %}
+      {% endif %}
     </li>
   {% endfor %}
 </ul>

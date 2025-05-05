@@ -8,15 +8,23 @@
 {% block content %}
 <div class="container">
 <h2>Клиенты</h2>
-<a href="{% url 'client-create' %}">Добавить клиента</a>
+{% if user.is_authenticated %}
+  {% if user.is_staff %}
+    <a href="{% url 'client-create' %}">Добавить клиента</a>
+  {% endif %}
+{% endif %}
 <ul>
   {% for client in object_list %}
     <li>
       <a href="{% url 'client-detail' client.pk %}">
         {{ client.name }} {{ client.surname }}
       </a>
-      <a href="{% url 'client-update' client.pk %}">Редактировать</a>
-      <a href="{% url 'client-delete' client.pk %}">Удалить</a>
+      {% if user.is_authenticated %}
+        {% if user.is_staff %}
+          <a href="{% url 'client-update' client.pk %}">Редактировать</a>
+          <a href="{% url 'client-delete' client.pk %}">Удалить</a>
+        {% endif %}
+      {% endif %}
     </li>
   {% endfor %}
 </ul>

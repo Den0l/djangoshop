@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title_name %}
+  Создание карты
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<h1>{% if form.instance.pk %}Редактировать карту{% else %}Добавить карту{% endif %}</h1>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Сохранить</button>
+</form>
+<a href="{% url 'card-list' %}">Отмена</a>
+</div>
+{% endblock %}

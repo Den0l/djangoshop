@@ -1,8 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.contrib.auth import login, logout
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+
+from basket.basket import Basket
 from .models  import *
 from .forms  import *
+from basket.forms import BasketAddProductForm
 
 def base_view(request):
     return render(request, 'base.html')
@@ -11,7 +15,7 @@ def about_view(request):
     return render(request, 'about.html')
 
 def all_products_view(request):
-    return render(request, 'all_products.html')
+    return render(request, 'card/card_list.html')
 
 def cart_view(request):
     return render(request, 'cart.html')
@@ -34,6 +38,108 @@ def privacy_view(request):
 def product_detail_view(request):
     return render(request, 'product_detail.html')
 
+def basket_detail(request):
+    basket = Basket(request)
+    return render(request, 'basket/detail.html', context={'basket': basket})
+
+def login_view(request):
+    return render(request, 'auth/login.html')
+
+def registration_view(request):
+    return render(request, 'auth/registration.html')
+
+def login_user(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            login(request, form.get_user())
+            if request.GET.get('next'):
+                return redirect(request.GET.get('next'))
+            return redirect('base')
+    else:
+        form = AuthenticationForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'auth/login.html', context)
+
+def registration_user(request):
+    if request.method == 'POST':
+        form = RegistrationFrom(data=request.POST)
+        if form.is_valid():
+            login(request, form.save())
+            if request.GET.get('next'):
+                return redirect(request.GET.get('next'))
+            return redirect('base')
+    else:
+        form = RegistrationFrom()
+    context = {
+        'form': form
+    }
+    return render(request, 'auth/registration.html', context)
+
+def logout_user(request):
+    logout(request)
+    return redirect('base')
+
+class CardListView(ListView):
+    model = Card
+    template_name = 'card/card_list.html'
+    context_object_name = 'card'
+
+class CardDetailView(DetailView):
+    model = Card
+    template_name = 'card/card_detail.html'
+    context_object_name = 'card'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_basket'] = BasketAddProductForm()
+        return context
+
+class CardCreateView(CreateView):
+    model = Card
+    fields = '__all__'
+    template_name = 'card/card_form.html'
+    success_url = reverse_lazy('card-list')
+
+class CardUpdateView(UpdateView):
+    model = Card
+    fields = '__all__'
+    template_name = 'card/card_form.html'
+    success_url = reverse_lazy('card-list')
+
+class CardDeleteView(DeleteView):
+    model = Card
+    template_name = 'card/card_delete.html'
+    success_url = reverse_lazy('card-list')
+
+class BranchListView(ListView):
+    model = Branch
+    template_name = 'branch/branch_list.html'
+    context_object_name = 'branch'
+
+class BranchDetailView(DetailView):
+    model = Branch
+    template_name = 'branch/branch_detail.html'
+    context_object_name = 'branch'
+
+class BranchCreateView(CreateView):
+    model = Branch
+    fields = '__all__'
+    template_name = 'branch/branch_form.html'
+    success_url = reverse_lazy('branch-list')
+
+class BranchUpdateView(UpdateView):
+    model = Branch
+    fields = '__all__'
+    template_name = 'branch/branch_form.html'
+    success_url = reverse_lazy('branch-list')
+
+class BranchDeleteView(DeleteView):
+    model = Branch
+    template_name = 'branch/branch_delete.html'
+    success_url = reverse_lazy('branch-list')
 
 class ClientListView(ListView):
     model = Client

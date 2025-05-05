@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title_name %}
+  Информация о карте
+{% endblock %}
+{% block content %}
+<div class="container">
+<h1>{{ object.type }}</h1>
+<p> {{ object.price }}</p>
+
+<img src="{{ object.photo.url }}" alt="Фото карты" style="max-height: 300px; max-width: 300px; object-fit: contain;" >
+
+</div>
+
+{% if request.user.is_authenticated %}
+    <form method="post" action="{% url 'basket_add' card.pk %}">
+        {% csrf_token %}
+        {{ form_basket.as_p }}
+        <input type="hidden" name="count" value="1" />
+        <button type="submit" class="btn btn-success">Добавить в корзину</button>
+    </form>
+{% endif %}
+
+<div>
+<a href="{% url 'card-list' %}">Назад</a>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title_name %}
+Ваша корзина
+{% endblock  %}
+
+{% block content  %}
+    <div class="p-3">
+        <h1>Корзина</h1>
+        <table class="table table-bordered my-2">
+            <thead>
+                <tr>
+                    <th>Изображение</th>
+                    <th>Товар</th>
+                    <th>Количество</th>
+                    <th>Цена за шт.</th>
+                    <th>Общая цена</th>
+                    <th>Действие</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in basket %}
+                    {% with item.product as product %}
+                        <tr>
+                            <td>
+                                {% if product.photo %}
+                                    <img src="{{product.photo.url}}" style="max-height: 100px; max-width: 100px; object-fit: contain; border-radius: 20px" alt="Загрузка">
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'card-detail' product.pk %}"> {{product.type}} </a>
+                            </td>
+                            <td>
+                                {{item.count}} шт.
+                            </td>
+                            <td>
+                                {{item.price}} руб.
+                            </td>
+                            <td>
+                                {{item.total_price}} руб.
+                            </td>
+                            <td>
+                                <a href="{% url 'basket_remove' product.pk%}" class="btn btn-outline-danger">Убарть из корзины</a>
+                            </td>
+                        </tr>
+                    {% endwith %}
+                {% endfor %}
+                <tr>
+                    <td  colspan="2">Всего:</td>
+                    <td> {{basket|length}} шт.</td>
+                    <td  colspan="2">{{basket.get_total_price}} руб.</td>
+                    <td>
+                        <a href="{% url 'basket_clear'%}" class="btn btn-danger">Очистить корзину</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="{% url 'card-list'%}" class="btn btn-outline-success">Назад к каталогу</a>
+        {% if basket|length > 0 %}
+        <a href="{% url 'open_order'%}" class="btn btn-outline-primary">Купить</a>
+        {% endif %}
+    </div>
+{% endblock  %}

@@ -7,7 +7,7 @@
 {% block content %}
 <div class="container">
 <h1>{{ object.name }} {{ object.surname }}</h1>
-<img src="{{ object.photo.url }}" alt="Фото клиента">
+<img src="{{ object.photo.url }}" alt="Фото клиента" style="max-height: 300px; max-width: 300px; object-fit: contain;">
 <p>Email: {{ object.email }}</p>
 <p>Телефон: {{ object.phone }}</p>
 <a href="{% url 'client-list' %}">Назад</a>

@@ -32,3 +32,11 @@ class EmployeeAdmin(admin.ModelAdmin):
 @admin.register(Card)
 class CardAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Pos_order)
+class Pos_orderAdmin(admin.ModelAdmin):
+    pass

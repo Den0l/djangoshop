@@ -7,15 +7,23 @@
 {% block content %}
 <div class="container">
 <h2>Транзакции</h2>
-<a href="{% url 'transaction-create' %}">Добавить новую транзакцию</a>
+{% if user.is_authenticated %}
+  {% if user.is_staff %}
+   <a href="{% url 'transaction-create' %}">Добавить новую транзакцию</a>
+  {% endif %}
+{% endif %}
 <ul>
   {% for transaction in transactions %}
     <li>
       <a href="{% url 'transaction-detail' transaction.pk %}">
         Транзакция {{ transaction.id }} ({{ transaction.amount }} ₽)
       </a>
-      <a href="{% url 'transaction-update' transaction.pk %}">Редактировать</a>
-      <a href="{% url 'transaction-delete' transaction.pk %}">Удалить</a>
+      {% if user.is_authenticated %}
+        {% if user.is_staff %}
+          <a href="{% url 'transaction-update' transaction.pk %}">Редактировать</a>
+          <a href="{% url 'transaction-delete' transaction.pk %}">Удалить</a>
+        {% endif %}
+      {% endif %}
     </li>
   {% endfor %}
 </ul>

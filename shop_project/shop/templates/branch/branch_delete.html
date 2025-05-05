@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title_name %}
+  Удаление филиала
+{% endblock %}
+{% block content %}
+<div class="container">
+<h1>Удалить клиента "{{ object.name }} {{ object.address }}"?</h1>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Подтвердить удаление</button>
+</form>
+<a href="{% url 'branch-list' %}">Отмена</a>
+</div>
+{% endblock %}

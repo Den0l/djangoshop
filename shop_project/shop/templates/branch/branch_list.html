@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title_name %}
+  Список филиалов
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<h2>Филиалы</h2>
+{% if user.is_authenticated %}
+  {% if user.is_staff %}
+    <a href="{% url 'branch-create' %}">Добавить Филиал</a>
+  {% endif %}
+{% endif %}
+<ul>
+  {% for branch in object_list %}
+    <li>
+      <a href="{% url 'branch-detail' branch.pk %}">
+        {{ branch.name }} {{ branch.surname }}
+      </a>
+      {% if user.is_authenticated %}
+        {% if user.is_staff %}
+          <a href="{% url 'branch-update' branch.pk %}">Редактировать</a>
+          <a href="{% url 'branch-delete' branch.pk %}">Удалить</a>
+        {% endif %}
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+</div>
+{% endblock %}

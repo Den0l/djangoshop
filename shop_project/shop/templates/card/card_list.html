@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title_name %}
+  Список карт
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<h2>Карты</h2>
+{% if user.is_authenticated %}
+  {% if user.is_staff %}
+    <a href="{% url 'card-create' %}">Добавить карту</a>
+  {% endif %}
+{% endif %}
+
+<ul>
+  {% for card in object_list %}
+    <li>
+      <a href="{% url 'card-detail' card.pk %}">
+        {{ card.pk }}
+      </a>
+      {% if user.is_authenticated %}
+        {% if user.is_staff %}
+          <a href="{% url 'card-update' card.pk %}">Редактировать</a>
+          <a href="{% url 'card-delete' card.pk %}">Удалить</a>
+        {% endif %}
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+</div>
+{% endblock %}

@@ -7,15 +7,24 @@
 {% block content %}
 <div class="container">
 <h2>Кредиты</h2>
-<a href="{% url 'credit-create' %}">Добавить кредит</a>
+{% if user.is_authenticated %}
+  {% if user.is_staff %}
+    <a href="{% url 'credit-create' %}">Добавить кредит</a>
+  {% endif %}
+{% endif %}
+
 <ul>
   {% for credit in credits %}
     <li>
       <a href="{% url 'credit-detail' credit.pk %}">
         {{ credit.amount }} ₽ ({{ credit.client.name }})
       </a>
-      <a href="{% url 'credit-update' credit.pk %}">Редактировать</a>
-      <a href="{% url 'credit-delete' credit.pk %}">Удалить</a>
+      {% if user.is_authenticated %}
+        {% if user.is_staff %}
+          <a href="{% url 'credit-update' credit.pk %}">Редактировать</a>
+          <a href="{% url 'credit-delete' credit.pk %}">Удалить</a>
+        {% endif %}
+      {% endif %}
     </li>
   {% endfor %}
 </ul>

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title_name %}
+  Информация о филиале
+{% endblock %}
+{% block content %}
+<div class="container">
+<h1>{{ object.name }}</h1>
+<p> {{ object.address }}</p>
+<img src="{{ object.photo.url }}" alt="Фото филиала" style="max-height: 300px; max-width: 300px; object-fit: contain;">
+<a href="{% url 'branch-list' %}">Назад</a>
+</div>
+{% endblock %}

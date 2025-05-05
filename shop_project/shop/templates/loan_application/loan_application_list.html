@@ -7,15 +7,24 @@
 {% block content %}
 <div class="container">
 <h2>Заявки на кредит</h2>
-<a href="{% url 'loan-application-create' %}">Добавить новую заявку</a>
+{% if user.is_authenticated %}
+  {% if user.is_staff %}
+    <a href="{% url 'loan-application-create' %}">Добавить новую заявку</a>
+  {% endif %}
+{% endif %}
+
 <ul>
   {% for application in loan_applications %}
     <li>
       <a href="{% url 'loan-application-detail' application.pk %}">
         Заявка №{{ application.id }} ({{ application.status }})
       </a>
-      <a href="{% url 'loan-application-update' application.pk %}">Редактировать</a>
-      <a href="{% url 'loan-application-delete' application.pk %}">Удалить</a>
+      {% if user.is_authenticated %}
+        {% if user.is_staff %}
+          <a href="{% url 'loan-application-update' loan-application.pk %}">Редактировать</a>
+          <a href="{% url 'loan-application-delete' loan-application.pk %}">Удалить</a>
+        {% endif %}
+      {% endif %}
     </li>
   {% endfor %}
 </ul>
