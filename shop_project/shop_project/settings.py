@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
-    'basket'
+    'basket',
+    'api_shop',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -137,3 +139,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 BASKET_SESSION_ID = 'basket'
 
 LOGIN_URL = '/login/'
+
+REST_FRAMEWROK = {
+    'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S.%f%z",
+}
